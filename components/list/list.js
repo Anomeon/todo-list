@@ -1,4 +1,6 @@
 (() => {
+  'use strict';
+
   let listItemTemplate = document.querySelector('[data-template-list-item]');
 
   let appendItem = function(items, id, state) {
@@ -23,29 +25,30 @@
       storage.updateItemState(id, 'done');
       renderBadge();
     });
-  }
+  };
 
   let renderList = function() {
     let state = getState();
-    if (state === 'all') state = "";
+    if (state === 'all') { state = ''; }
     let items = storage.getItems(state);
     for (let id in items) {
       appendItem(items, id, state);
     }
-  }
+  };
 
   let clearList = function() {
     Array.prototype.slice
       .call(document.querySelector(`[data-list][hash="${getState()}"]`).children)
       .forEach(child => child.remove());
-  }
+  };
 
-  document.querySelector('[src="/components/list/list.html"]').addEventListener('load', () => {
-    renderList();
-    renderBadge();
-  });
+  document.querySelector('[src="/components/list/list.html"]')
+    .addEventListener('load', () => {
+      renderList();
+      renderBadge();
+    });
 
-  window.addEventListener('hashchange', (e) => {
+  window.addEventListener('hashchange', () => {
     clearList();
     renderList();
   });

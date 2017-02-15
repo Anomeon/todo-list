@@ -1,5 +1,7 @@
 (() => {
-  let button = document.querySelector('.mdl-js-button')
+  'use strict';
+
+  let button = document.querySelector('.mdl-js-button');
   let form = document.querySelector('[data-add-form]');
   let input = form.querySelector('[type=text]');
 
@@ -13,14 +15,14 @@
       timeout: 2000
     };
     snackbarContainer.MaterialSnackbar.showSnackbar(data);
-  }
+  };
 
   let handler = (e) => {
     e.preventDefault();
     let IDCounter = storage.getIDCounter();
     let inputValue = input.value;
     let itemID = parseInt(IDCounter) + 1;
-    if (inputValue !== "") {
+    if (inputValue !== '') {
       let newItem = storage.addItem(inputValue);
       form.reset();
       fireSnackbar(`Task #${itemID} added`);
@@ -28,10 +30,10 @@
       appendItem(newItem, itemID, state);
       renderBadge();
     }
-  }
+  };
 
-  input.addEventListener('input', (e) => {
-    if (input.value !== "") {
+  input.addEventListener('input', () => {
+    if (input.value !== '') {
       button.removeAttribute('disabled');
     } else {
       button.setAttribute('disabled', '');
@@ -40,5 +42,5 @@
 
   form.addEventListener('submit', handler);
 
-  window.fireSnackbar = fireSnackbar
+  window.fireSnackbar = fireSnackbar;
 })();

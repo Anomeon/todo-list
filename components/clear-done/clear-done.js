@@ -1,4 +1,6 @@
 (() => {
+  'use strict';
+
   let button = document.querySelector('[data-clear-done]');
   componentHandler.upgradeElement(button);
 
