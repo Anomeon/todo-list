@@ -29,6 +29,7 @@
       let state = getState();
       appendItem(newItem, itemID, state);
       renderBadge();
+      button.setAttribute('disabled', '');
     }
   };
 

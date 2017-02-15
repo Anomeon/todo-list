@@ -13,7 +13,8 @@
     "renderBadge" : true,
     "clearList" : true,
     "renderList" : true,
-    "fireSnackbar" : true
+    "fireSnackbar" : true,
+    "setClearButtonState" : true
   },
 
   "parserOptions": {

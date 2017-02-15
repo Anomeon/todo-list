@@ -24,6 +24,7 @@
       item.classList.add('list__element--done');
       storage.updateItemState(id, 'done');
       renderBadge();
+      setClearButtonState();
     });
   };
 
