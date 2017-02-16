@@ -28,9 +28,11 @@
     });
   };
 
-  let renderList = function() {
-    let state = getState();
-    if (state === 'all') { state = ''; }
+  let renderList = function(state) {
+    if (!state) {
+      state = getState();
+      if (state === 'all') { state = ''; }
+    }
     let items = storage.getItems(state);
     for (let id in items) {
       appendItem(items, id, state);
@@ -45,13 +47,28 @@
 
   document.querySelector('[src="/components/list/list.html"]')
     .addEventListener('load', () => {
-      renderList();
+      // renderList();
       renderBadge();
     });
 
-  window.addEventListener('hashchange', () => {
+  // window.addEventListener('hashchange', () => {
+  //   clearList();
+  //   renderList();
+  // });
+
+  document.querySelector('[hash="created"]').addEventListener('show', e => {
     clearList();
-    renderList();
+    renderList('created');
+  });
+
+  document.querySelector('[hash="done"]').addEventListener('show', e => {
+    clearList();
+    renderList('done');
+  });
+
+  document.querySelector('[hash="all"]').addEventListener('show', e => {
+    clearList();
+    renderList('all');
   });
 
   window.appendItem = appendItem;
