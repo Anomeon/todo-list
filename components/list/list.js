@@ -53,7 +53,7 @@
 
   document.querySelector('[hash="([a-zA-Z]+)"]').addEventListener('show', e => {
     clearList();
-    renderList('created');
+    renderList(e.detail.param1);
   });
 
   window.appendItem = appendItem;
