@@ -7,7 +7,7 @@
     state = state || 'all';
     let templateContent = listItemTemplate.content.cloneNode(true);
     let li = templateContent.querySelector('li');
-    let list = document.querySelector(`[data-list][hash="${state}"]`);
+    let list = document.querySelector('[data-list][hash="([a-zA-Z]+)"]');
     li.setAttribute('data-item', id);
     if (items[id].state === 'done') {
       li.classList.add('list__element--done');
@@ -41,7 +41,7 @@
 
   let clearList = function() {
     Array.prototype.slice
-      .call(document.querySelector(`[data-list][hash="${getState()}"]`).children)
+      .call(document.querySelector('[data-list][hash="([a-zA-Z]+)"]').children)
       .forEach(child => child.remove());
   };
 
@@ -51,24 +51,9 @@
       renderBadge();
     });
 
-  // window.addEventListener('hashchange', () => {
-  //   clearList();
-  //   renderList();
-  // });
-
-  document.querySelector('[hash="created"]').addEventListener('show', e => {
+  document.querySelector('[hash="([a-zA-Z]+)"]').addEventListener('show', e => {
     clearList();
     renderList('created');
-  });
-
-  document.querySelector('[hash="done"]').addEventListener('show', e => {
-    clearList();
-    renderList('done');
-  });
-
-  document.querySelector('[hash="all"]').addEventListener('show', e => {
-    clearList();
-    renderList('all');
   });
 
   window.appendItem = appendItem;
