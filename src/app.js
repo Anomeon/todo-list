@@ -1,10 +1,18 @@
-import {ItemStorage, createStore} from './services'
+import {ItemStorage, createStore, getState} from './services'
 
-let storage = new ItemStorage(localStorage);
+function reducer(state = { count: 0 }, action) {
+  switch (action.type) {
+    case 'INCREMENT': return { count: state.count + action.amount };
+    case 'DECREMENT': return { count: state.count - action.amount };
+    case 'RESET': return {count: 0};
+    default: return state;
+  }
+}
 
-let getState = function() {
-  return window.location.hash.split('#')[1];
-};
-
-window.storage = storage;
+window.store = createStore(reducer);
+window.itemStorage = new ItemStorage(localStorage);
 window.getState = getState;
+
+const incrementAction = {type: 'INCREMENT', amount: 5};
+window.store.subscribe(() => {console.log(store.getState())})
+window.store.dispatch(incrementAction);

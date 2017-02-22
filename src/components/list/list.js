@@ -22,7 +22,7 @@
     item.querySelector('button').addEventListener('click', (e) => {
       e.preventDefault();
       item.classList.add('list__element--done');
-      storage.updateItemState(id, 'done');
+      itemStorage.updateItemState(id, 'done');
       renderBadge();
       setClearButtonState();
     });
@@ -31,7 +31,7 @@
   let renderList = function() {
     let state = getState();
     if (state === 'all') { state = ''; }
-    let items = storage.getItems(state);
+    let items = itemStorage.getItems(state);
     for (let id in items) {
       appendItem(items, id, state);
     }

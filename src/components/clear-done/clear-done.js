@@ -6,7 +6,7 @@
 
   let setClearButtonState = function() {
     let button = document.querySelector('[data-clear-done]');
-    if (Object.keys(storage.getItems('done')).length > 0) {
+    if (Object.keys(itemStorage.getItems('done')).length > 0) {
       button.removeAttribute('disabled');
     } else {
       button.setAttribute('disabled', '');
@@ -16,8 +16,8 @@
   setClearButtonState();
 
   button.addEventListener('click', () => {
-    let items = storage.getItems('done');
-    storage.deleteItems(Object.keys(items));
+    let items = itemStorage.getItems('done');
+    itemStorage.deleteItems(Object.keys(items));
     clearList();
     renderList();
     setClearButtonState();

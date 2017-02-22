@@ -16,20 +16,3 @@ export function createStore(reducer, initialState) {
 
   return { getState, dispatch, subscribe };
 }
-
-function reducer(state = { count: 0 }, action) {
-  switch (action.type) {
-    case 'INCREMENT': return { count: state.count + action.amount };
-    case 'DECREMENT': return { count: state.count - action.amount };
-    case 'RESET': return {count: 0};
-    default: return state;
-  }
-}
-
-const store = createStore(reducer);
-
-const incrementAction = {type: 'INCREMENT', amount: 5};
-
-store.subscribe(() => {console.log(store.getState())})
-
-store.dispatch(incrementAction);

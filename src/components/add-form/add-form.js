@@ -19,11 +19,11 @@
 
   let handler = (e) => {
     e.preventDefault();
-    let IDCounter = storage.getIDCounter();
+    let IDCounter = itemStorage.getIDCounter();
     let inputValue = input.value;
     let itemID = parseInt(IDCounter) + 1;
     if (inputValue !== '') {
-      let newItem = storage.addItem(inputValue);
+      let newItem = itemStorage.addItem(inputValue);
       form.reset();
       fireSnackbar(`Task #${itemID} added`);
       let state = getState();
