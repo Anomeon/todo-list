@@ -38,8 +38,7 @@
   };
 
   let clearList = function() {
-    Array.prototype.slice
-      .call(document.querySelector(`[data-list][hash="${getState()}"]`).children)
+    slice(document.querySelector(`[data-list][hash="${getState()}"]`).children)
       .forEach(child => child.remove());
   };
 

@@ -5,7 +5,6 @@ export function createStore(reducer, initialState) {
   const getState = () => state;
 
   const dispatch = action => {
-    console.log(action);
     state = reducer(state, action);
     callbacks.forEach(callback => callback());
   };

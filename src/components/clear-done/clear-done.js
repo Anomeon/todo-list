@@ -13,8 +13,6 @@
     }
   };
 
-  setClearButtonState();
-
   button.addEventListener('click', () => {
     let items = itemStorage.getItems('done');
     itemStorage.deleteItems(Object.keys(items));
@@ -23,6 +21,8 @@
     setClearButtonState();
     fireSnackbar('Done tasks deleted');
   });
+
+  setClearButtonState();
 
   window.setClearButtonState = setClearButtonState;
 
