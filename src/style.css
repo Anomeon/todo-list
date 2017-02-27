@@ -2,8 +2,16 @@
   text-decoration: line-through;
 }
 
-.list__element--done button {
+.list__element--done [data-button-done] {
   visibility: hidden;
+}
+
+[data-button-delete] {
+  visibility: hidden;
+}
+
+.list__element--done [data-button-delete] {
+  visibility: visible;
 }
 
 .mdl-layout__tab-bar-container {

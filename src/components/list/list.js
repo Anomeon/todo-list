@@ -9,6 +9,7 @@
     let li = templateContent.querySelector('li');
     let list = document.querySelector(`[data-list][hash="${state}"]`);
     li.setAttribute('data-item', id);
+
     if (items[id].state === 'done') {
       li.classList.add('list__element--done');
     }
@@ -19,11 +20,19 @@
     list.appendChild(document.importNode(templateContent, true));
 
     let item = list.querySelector(`[data-item="${id}"]`);
-    item.querySelector('button').addEventListener('click', (e) => {
+    item.querySelector('[data-button-done]').addEventListener('click', (e) => {
       e.preventDefault();
       item.classList.add('list__element--done');
       itemStorage.updateItemState(id, 'done');
       renderBadge();
+      setClearButtonState();
+    });
+
+    item.querySelector('[data-button-delete]').addEventListener('click', (e) => {
+      e.preventDefault();
+      itemStorage.deleteItems([id]);
+      renderBadge();
+      item.remove();
       setClearButtonState();
     });
   };
