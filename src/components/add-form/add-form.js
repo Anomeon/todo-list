@@ -25,10 +25,9 @@
     if (inputValue !== '') {
       let newItem = itemStorage.addItem(inputValue);
       form.reset();
-      fireSnackbar(`Task #${itemID} added`);
       let state = getState();
       appendItem(newItem, itemID, state);
-      renderBadge();
+      window.store.dispatch(actions.addItem(itemID));
       button.setAttribute('disabled', '');
     }
   };
@@ -40,6 +39,12 @@
       button.setAttribute('disabled', '');
     }
   });
+
+  window.store.subscribe(() => {
+    const {badgeAmount, addedItemId} = window.store.getState();
+    renderBadge(badgeAmount);
+    fireSnackbar(`Task #${addedItemId} added`);
+  })
 
   form.addEventListener('submit', handler);
 
